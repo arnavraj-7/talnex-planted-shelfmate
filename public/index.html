@@ -29,7 +29,7 @@
         <label>Books to read this year <input id="goal" type="number" min="1" placeholder="12"></label>
         <button type="submit" id="goal-btn">Set goal</button>
       </form>
-      <div class="bar" aria-hidden="true"><div id="goal-fill" class="fill"></div></div>
+      <div class="bar" role="progressbar" aria-label="Reading goal progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="goal-fill" class="fill"></div></div>
       <p id="goal-text" class="msg">No goal set yet.</p>
     </section>
 
