@@ -4,84 +4,53 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ShelfMate - your reading shelf</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600&display=swap">
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
   <header class="top">
     <h1>ShelfMate</h1>
-    <p class="tagline">Keep track of the books you want to read, are reading and have finished.</p>
-    <div id="account" class="account" hidden>
-      <span id="account-email"></span>
-      <button id="sign-out" type="button" class="link">Sign out</button>
-    </div>
+    <p class="tag">Keep track of the books you want to read, are reading, and have finished.</p>
   </header>
 
   <main>
-    <section id="auth-view" class="card">
-      <h2 id="auth-title">Sign in</h2>
-      <form id="auth-form" novalidate>
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" autocomplete="email" required>
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" autocomplete="current-password" required>
-        <p id="auth-message" class="message" role="alert"></p>
-        <button id="auth-submit" type="submit">Sign in</button>
+    <section class="card" aria-labelledby="add-h">
+      <h2 id="add-h">Add a book</h2>
+      <form id="add-form">
+        <label>Title <input id="title" type="text" placeholder="Title"></label>
+        <label>Author <input id="author" type="text" placeholder="Author"></label>
+        <button type="submit" id="add-btn">Add book</button>
       </form>
-      <p class="switch">
-        <span id="auth-switch-text">New here?</span>
-        <button id="auth-switch" type="button" class="link">Create an account</button>
-      </p>
+      <p id="add-msg" class="msg" role="status"></p>
     </section>
 
-    <div id="shelf-view" hidden>
-      <section class="card">
-        <h2>Add a book</h2>
-        <form id="add-form" novalidate>
-          <label for="add-title">Title</label>
-          <input id="add-title" name="title" type="text" maxlength="200">
-          <label for="add-author">Author</label>
-          <input id="add-author" name="author" type="text" maxlength="120">
-          <label for="add-status">Status</label>
-          <select id="add-status" name="status">
-            <option value="want">Want to read</option>
-            <option value="reading">Reading</option>
-            <option value="finished">Finished</option>
-          </select>
-          <p id="add-message" class="message" role="alert"></p>
-          <button id="add-submit" type="submit">Add book</button>
-        </form>
-      </section>
+    <section class="card" aria-labelledby="goal-h">
+      <h2 id="goal-h">Yearly reading goal</h2>
+      <form id="goal-form">
+        <label>Books to read this year <input id="goal" type="number" min="1" placeholder="12"></label>
+        <button type="submit" id="goal-btn">Set goal</button>
+      </form>
+      <div class="bar" aria-hidden="true"><div id="goal-fill" class="fill"></div></div>
+      <p id="goal-text" class="msg">No goal set yet.</p>
+    </section>
 
-      <section class="card">
-        <h2>Reading goal</h2>
-        <form id="goal-form" class="row" novalidate>
-          <label for="goal-target">Books to finish this year</label>
-          <input id="goal-target" name="target" type="number" min="1" max="1000">
-          <button id="goal-submit" type="submit">Save goal</button>
-        </form>
-        <p id="goal-summary" class="summary">No goal set yet.</p>
-        <progress id="goal-bar" max="100" value="0"></progress>
-        <p id="goal-message" class="message" role="alert"></p>
-      </section>
-
-      <section class="card">
-        <div class="row between">
-          <h2>My books</h2>
-          <button id="export-button" type="button">Export CSV</button>
-        </div>
-        <label for="search">Search by title or author</label>
-        <input id="search" type="search" placeholder="Search my books">
-        <p id="average" class="summary"></p>
-        <p id="list-message" class="message" role="alert"></p>
-        <ul id="book-list" class="books"></ul>
-        <p id="empty" class="summary" hidden>No books to show.</p>
-      </section>
-    </div>
+    <section class="card" aria-labelledby="shelf-h">
+      <h2 id="shelf-h">Your shelf</h2>
+      <div class="tools">
+        <input id="search" type="search" placeholder="Search by title or author" aria-label="Search books">
+        <nav class="tabs" id="tabs" aria-label="Filter by status">
+          <button type="button" data-filter="all" class="on">All</button>
+          <button type="button" data-filter="want">Want to read</button>
+          <button type="button" data-filter="reading">Reading</button>
+          <button type="button" data-filter="finished">Finished</button>
+        </nav>
+        <button type="button" id="export-btn">Export CSV</button>
+      </div>
+      <p id="count" class="msg"></p>
+      <p id="avg" class="msg"></p>
+      <ul id="books" class="books"></ul>
+      <p id="empty" class="msg" hidden>No books to show.</p>
+    </section>
   </main>
-
   <script src="/app.js"></script>
 </body>
 </html>
