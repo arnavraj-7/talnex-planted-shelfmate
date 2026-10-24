@@ -50,7 +50,9 @@ function render() {
   const shown = visibleBooks();
   for (const b of shown) list.appendChild(editing === b.id ? editRow(b) : bookRow(b));
   $("empty").hidden = shown.length > 0;
-  $("count").textContent = `${state.books.length} book${state.books.length === 1 ? "" : "s"} on your shelf`;
+  $("count").textContent = shown.length === state.books.length
+    ? `${state.books.length} book${state.books.length === 1 ? "" : "s"} on your shelf`
+    : `Showing ${shown.length} of ${state.books.length} books`;
 
   const rated = state.books.filter((b) => b.status === "finished" && b.rating > 0);
   $("avg").textContent = rated.length
