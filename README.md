@@ -1,6 +1,6 @@
 # ShelfMate
 
-A small reading tracker that runs in your browser. Your shelf is saved on your device, so no account is needed.
+A small reading tracker.
 
 ## Features
 
